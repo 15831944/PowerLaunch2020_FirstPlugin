@@ -1,0 +1,12 @@
+﻿namespace Parcels
+{
+    public interface IMessageWriter
+    {
+        void WriteMesage(string message);
+    }
+
+    public interface IParcelSummaryWriter
+    {
+        void Write(ParcelSummary summary, IMessageWriter writer);
+    }
+}

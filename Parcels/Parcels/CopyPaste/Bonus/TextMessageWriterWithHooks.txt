@@ -1,0 +1,32 @@
+﻿    public class TextMessageWriter : IMessageWriter
+    {
+        protected readonly string _filePath;
+        protected bool _shouldAppend;
+        public TextMessageWriter(string filePath)
+        {
+            _filePath = filePath;
+            _shouldAppend = true;
+        }
+
+        public virtual void WriteMessage(string message)
+        {
+            using (var streamWriter = new StreamWriter(_filePath, _shouldAppend))
+            {
+                Before(streamWriter);
+                streamWriter.WriteLine(message);
+                After(streamWriter);
+            }
+
+            Active.Editor.WriteMessage($"\nWriter [{this.GetType().Name}] finished. Please see {_filePath} for summary.");
+        }
+
+        protected virtual void Before(StreamWriter streamWriter)
+        {
+            streamWriter.WriteLine($"{Active.Document.Name}");
+        }
+
+        protected virtual void After(StreamWriter streamWriter)
+        {
+            streamWriter.WriteLine(DateTime.Now.ToString());
+        }
+    }

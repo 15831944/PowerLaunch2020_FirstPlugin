@@ -1,0 +1,54 @@
+﻿[CommandMethod("PS_Hello")]
+public void Hello()
+{
+    var document = Autodesk.AutoCAD.ApplicationServices.Core.Application.DocumentManager.MdiActiveDocument;
+    var editor = document.Editor;
+
+    editor.WriteMessage("\nHello world!");
+}
+
+[CommandMethod("PS_CreateParcelLayer")]
+public void CreateLayer()
+{
+    var creator = new ParcelLayer();
+    creator.Create();
+}
+
+############ First Version ############ 
+
+[CommandMethod("PS_CountParcels")]
+public void CountParcels()
+{
+    var cmd = new ParcelCounter();
+    var summary = cmd.Count();
+	Active.Editor.WriteMessage($"Found {summary} parcels.");
+} 
+
+############ Second Version ############ 
+
+[CommandMethod("PS_CountParcels")]
+public void CountParcels()
+{
+    var cmd = new ParcelCounter();
+    var summary = cmd.Count();
+
+    var writer = new AutocadMessageWriter();
+    var summarizer = new ParcelSummaryWriter();
+    summarizer.Write(summary, writer);
+} 
+
+############ Final Version ############ 
+
+[CommandMethod("PS_CountParcels")]
+public void CountParcels()
+{
+    var cmd = new ParcelCounter();
+    var summary = cmd.Count();
+
+    var acadWriter = new AutocadMessageWriter();
+    var textWriter = new TextMessageWriter($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ParcelSummary.txt");
+
+    var summarizer = new ParcelSummaryWriter();
+    summarizer.Write(summary, acadWriter);
+    summarizer.Write(summary, textWriter);
+} 

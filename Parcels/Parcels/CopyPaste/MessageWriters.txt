@@ -1,0 +1,47 @@
+﻿using System;
+using System.Linq;
+
+namespace Parcels
+{
+    public class AutocadMessageWriter : IMessageWriter
+    {
+        public void WriteMesage(string message)
+        {
+            Active.Editor.WriteMessage($"\n{message}");
+        }
+    }
+
+    public class TextMessageWriter : IMessageWriter
+    {
+        readonly string _filePath;
+        public TextMessageWriter(string filePath)
+        {
+            _filePath = filePath;
+        }
+
+############ First Version ############ 
+
+        public void WriteMesage(string message)
+        {
+            bool appendToFile = true;
+            using(var streamWriter = new StreamWriter(_filePath, appendToFile))
+            {
+                streamWriter.WriteLine(message);
+            }
+        }
+    }
+}
+
+############ Second Version ############ 
+
+        public void WriteMesage(string message)
+        {
+            bool appendToFile = true;
+            using(var streamWriter = new StreamWriter(_filePath, appendToFile))
+            {
+                streamWriter.WriteLine($"{Active.Document.Name}");
+                streamWriter.WriteLine(message);
+                streamWriter.WriteLine(DateTime.Now.ToString());
+            }
+        }
+
