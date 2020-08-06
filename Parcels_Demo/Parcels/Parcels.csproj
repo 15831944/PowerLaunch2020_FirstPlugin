@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{653FB16C-3968-4C5D-B907-301CB581464F}</ProjectGuid>
+    <ProjectGuid>{515688FC-DF09-44F5-99D9-9E871B99D22D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Parcels</RootNamespace>
@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AcCoreMgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX_for_AutoCAD_2020_Win_64_bit\inc\AcCoreMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcDbMgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX_for_AutoCAD_2020_Win_64_bit\inc\AcDbMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcMgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX_for_AutoCAD_2020_Win_64_bit\inc\AcMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,21 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Active.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="ParcelCounter.cs" />
+    <Compile Include="ParcelLayer.cs" />
+    <Compile Include="ParcelSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CopyPaste\Active.txt" />
-    <Content Include="CopyPaste\Bonus\Commands.txt" />
-    <Content Include="CopyPaste\Bonus\HtmlMessageWriter.txt" />
-    <Content Include="CopyPaste\Bonus\HtmlParcelSummaryWriter.txt" />
-    <Content Include="CopyPaste\Bonus\TextMessageWriterWithHooks.txt" />
-    <Content Include="CopyPaste\Commands.txt" />
-    <Content Include="CopyPaste\Interfaces.txt" />
-    <Content Include="CopyPaste\MessageWriters.txt" />
-    <Content Include="CopyPaste\ParcelCounter.txt" />
-    <Content Include="CopyPaste\ParcelLayer.txt" />
-    <Content Include="CopyPaste\ParcelSummary.txt" />
-    <Content Include="CopyPaste\ParcelSummaryWriter.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
